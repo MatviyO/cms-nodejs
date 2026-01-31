@@ -1,4 +1,3 @@
-// ask-name.js
 process.stdin.setEncoding("utf8");
 
 process.stdout.write("Enter your name: ");
