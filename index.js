@@ -1,11 +1,19 @@
-// ask-name.js
-process.stdin.setEncoding("utf8");
+import express from 'express';
+import path from 'path';
 
-process.stdout.write("Enter your name: ");
+const app = express();
+const port = process.env.PORT || 4000;
 
-process.stdin.once("data", (chunk) => {
-    const name = chunk.trim();
-    process.stdout.write(`Hello, ${name}\n`);
-    process.exitCode = 0;
-    process.stdin.pause();
-});
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+    res.send('Welcome');
+})
+
+app.get('/post/:id', (req, res) => {
+    res.send(`${req.params.id}`)
+})
+
+app.listen(port, () => {
+    console.log('App has been started')
+})
